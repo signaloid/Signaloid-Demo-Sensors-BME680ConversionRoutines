@@ -41,7 +41,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <uncertain.h>
+#include <uxhw.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include "bme680.h"
@@ -367,7 +367,7 @@ loadFloatDistFromPath(const char *  filename, int sampleCount, float *  returnVa
 		fscanf(fp, "%f\n", &samples[i]);
 	}
 
-	*returnValue = libUncertainFloatDistFromSamples(samples, sampleCount);
+	*returnValue = UxHwFloatDistFromSamples(samples, sampleCount);
 	
 	if (fclose(fp) != 0)
 	{
