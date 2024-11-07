@@ -1,0 +1,10 @@
+MinimumCore:
+      Microarchitecture: Athens
+      CorrelationTracking: Autocorrelation
+      MemorySize: 256000
+      Precision: 32
+
+TraceVariables:
+  - File: "main.c"
+    LineNumber: 138
+    Expression: "outputVariables[0:2]"
