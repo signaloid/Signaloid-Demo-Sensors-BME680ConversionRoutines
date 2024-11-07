@@ -1,0 +1,11 @@
+--- BME680_driver/bme680_defs.h	2020-06-09 11:55:19.119837479 +0100
++++ bme680_defse.h	2020-06-09 13:38:03.760160936 +0100
+@@ -94,7 +94,7 @@
+ /** BME680 configuration macros */
+ /** Enable or un-comment the macro to provide floating point data output */
+ #ifndef BME680_FLOAT_POINT_COMPENSATION
+-/* #define BME680_FLOAT_POINT_COMPENSATION */
++#define BME680_FLOAT_POINT_COMPENSATION 
+ #endif
+ 
+ /** BME680 General config */

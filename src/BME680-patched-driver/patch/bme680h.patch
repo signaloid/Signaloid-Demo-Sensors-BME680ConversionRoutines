@@ -1,0 +1,50 @@
+--- BME680_driver/bme680.h	2020-06-09 11:55:19.119837479 +0100
++++ bme680e.h	2020-06-09 14:10:43.840263780 +0100
+@@ -41,6 +41,7 @@
+ /*!
+  * @defgroup BME680 SENSOR API
+  * @{*/
++#define BME680_FLOAT_POINT_COMPENSATION
+ #ifndef BME680_H_
+ #define BME680_H_
+ 
+@@ -53,6 +54,39 @@
+ /* Header includes */
+ #include "bme680_defs.h"
+ 
++/*!
++ * @brief This internal API is used to calculate the
++ * temperature value value in float format
++ *
++ * @param[in] dev       :Structure instance of bme680_dev.
++ * @param[in] temp_adc  :Contains the temperature ADC value .
++ *
++ * @return Calculated temperature in float
++ */
++float calc_temperature(float temp_adc, float par_t1, float par_t2, float par_t3);
++
++/*!
++ * @brief This internal API is used to calculate the
++ * pressure value value in float format
++ *
++ * @param[in] dev       :Structure instance of bme680_dev.
++ * @param[in] pres_adc  :Contains the pressure ADC value .
++ *
++ * @return Calculated pressure in float.
++ */
++float calc_pressure(float pres_adc, float t_fine, float par_p1, float par_p2, float par_p3, float par_p4, float par_p5, float par_p6, float par_p7, float par_p8, float par_p9, float par_p10);
++
++/*!
++ * @brief This internal API is used to calculate the
++ * humidity value value in float format
++ *
++ * @param[in] dev       :Structure instance of bme680_dev.
++ * @param[in] hum_adc   :Contains the humidity ADC value.
++ *
++ * @return Calculated humidity in float.
++ */
++float calc_humidity(float hum_adc, float t_fine, float par_h1, float par_h2, float par_h3, float par_h4, float par_h5, float par_h6, float par_h7);
++
+ /* function prototype declarations */
+ /*!
+  *  @brief This API is the entry point.
