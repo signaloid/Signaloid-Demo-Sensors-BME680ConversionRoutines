@@ -6,5 +6,5 @@ MinimumCore:
 
 TraceVariables:
   - File: "main.c"
-    LineNumber: 138
+    LineNumber: 149
     Expression: "outputVariables[0:2]"

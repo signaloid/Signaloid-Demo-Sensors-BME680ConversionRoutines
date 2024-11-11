@@ -1,5 +1,5 @@
 /*
- *	Copyright (c) 2021-2024, Signaloid.
+ *	Copyright (c) 2021–2024, Signaloid.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -93,6 +93,10 @@ typedef struct CommandLineArguments
 	 *	Raw BME680 ADC value for corversion to humidity.
 	 */
 	float				humidityRawADCValue;
+	/*
+	 *	Array of flags that track whether an input is set from the command-line.
+	 */
+	bool				isInputSetFromCommandLine[kInputDistributionIndexMax];
 } CommandLineArguments;
 
 /**

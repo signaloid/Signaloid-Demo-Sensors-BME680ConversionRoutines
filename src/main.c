@@ -97,22 +97,33 @@ calculateBME680ConversionRoutines(
 }
 
 /**
- *	@brief	Set distributions for input variables via UxHw calls.
+ *	@brief	Set distributions for input variables via UxHw calls if they are not already set from command line.
  *
  *	@param	inputVariables	: The input variables.
  */
 static void
-setInputVariablesViaUxHwCalls(float *  inputVariables)
+setInputVariables(CommandLineArguments *  arguments, float *  inputVariables)
 {
-	inputVariables[kInputDistributionIndexForTemperatureRawADCValue] = UxHwFloatUniformDist(
-								kBME680ConstantsTemperatureRawADCValueLowerBound,
-								kBME680ConstantsTemperatureRawADCValueUpperBound);
-	inputVariables[kInputDistributionIndexForPressureRawADCValue] = UxHwFloatUniformDist(
-								kBME680ConstantsPressureRawADCValueLowerBound,
-								kBME680ConstantsPressureRawADCValueUpperBound);
-	inputVariables[kInputDistributionIndexForHumidityRawADCValue] = UxHwFloatUniformDist(
-								kBME680ConstantsHumidityRawADCValueLowerBound,
-								kBME680ConstantshumidityRawADCValueUpperBound);
+	if (!arguments->isInputSetFromCommandLine[kInputDistributionIndexForTemperatureRawADCValue])
+	{
+		inputVariables[kInputDistributionIndexForTemperatureRawADCValue] = UxHwFloatUniformDist(
+											kBME680ConstantsTemperatureRawADCValueLowerBound,
+											kBME680ConstantsTemperatureRawADCValueUpperBound);
+	}
+
+	if (!arguments->isInputSetFromCommandLine[kInputDistributionIndexForPressureRawADCValue])
+	{
+		inputVariables[kInputDistributionIndexForPressureRawADCValue] = UxHwFloatUniformDist(
+											kBME680ConstantsPressureRawADCValueLowerBound,
+											kBME680ConstantsPressureRawADCValueUpperBound);
+	}
+
+	if (!arguments->isInputSetFromCommandLine[kInputDistributionIndexForHumidityRawADCValue])
+	{
+		inputVariables[kInputDistributionIndexForHumidityRawADCValue] = UxHwFloatUniformDist(
+											kBME680ConstantsHumidityRawADCValueLowerBound,
+											kBME680ConstantshumidityRawADCValueUpperBound);
+	}
 
 	return;
 }
@@ -207,7 +218,7 @@ main(int argc, char *  argv[])
 		 */
 		if (!arguments.useInputADCFiles)
 		{
-			setInputVariablesViaUxHwCalls(inputVariables);
+			setInputVariables(&arguments, inputVariables);
 		}
 
 		/*

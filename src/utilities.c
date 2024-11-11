@@ -1,5 +1,5 @@
 /*
- *	Copyright (c) 2021-2024, Signaloid.
+ *	Copyright (c) 2021–2024, Signaloid.
  *
  *	Permission is hereby granted, free of charge, to any person obtaining a copy
  *	of this software and associated documentation files (the "Software"), to deal
@@ -73,6 +73,11 @@ setDefaultCommandLineArguments(CommandLineArguments *  arguments)
 		.useInputADCFiles		= false,
 	};
 #pragma GCC diagnostic pop
+
+	for (size_t i = 0; i < kInputDistributionIndexMax; i++)
+	{
+		arguments->isInputSetFromCommandLine[i] = false;
+	}
 
 	snprintf(
 		arguments->measurementsPathPrefix,
@@ -235,6 +240,8 @@ getCommandLineArguments(int argc, char *  argv[], CommandLineArguments *  argume
 
 			return kCommonConstantReturnTypeError;
 		}
+
+		arguments->isInputSetFromCommandLine[kInputDistributionIndexForTemperatureRawADCValue] = true;
 	}
 
 	if (pressureArg != NULL)
@@ -259,6 +266,8 @@ getCommandLineArguments(int argc, char *  argv[], CommandLineArguments *  argume
 
 			return kCommonConstantReturnTypeError;
 		}
+
+		arguments->isInputSetFromCommandLine[kInputDistributionIndexForPressureRawADCValue] = true;
 	}
 
 	if (humidityArg != NULL)
@@ -283,6 +292,8 @@ getCommandLineArguments(int argc, char *  argv[], CommandLineArguments *  argume
 
 			return kCommonConstantReturnTypeError;
 		}
+
+		arguments->isInputSetFromCommandLine[kInputDistributionIndexForHumidityRawADCValue] = true;
 	}
 
 	if (calibrationConstantsPathPrefix != NULL)
